@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx
+  labels:       #These are ReplicaSet Labels
+    app: nginx
+    tier: frontend
+spec:
+       #Mody replicas according to your case
+  replicas: 3
+  selector:
+      #These are used to select Pod to create Replicas
+    matchLabels:
+      tier: frontend
+      app: nginx
+#This is Pod Definition
+  template:
+    metadata:
+    #These labels belong to pod
+      labels:
+        app: nginx
+        tier: frontend
+      spec:
+      containers:
+      - name: nginx
+        image: nginx:stable-perl
